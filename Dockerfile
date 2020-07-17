@@ -20,10 +20,12 @@ RUN npm install
 COPY --chown=node . .
 
 RUN npm run build
-RUN npm run migrate
+
+COPY wait-for-it.sh wait-for-it.sh
+RUN chmod +x wait-for-it.sh
 
 # Bind to all network interfaces so that it can be mapped to the host OS
 ENV HOST=0.0.0.0 PORT=8080
 
 EXPOSE ${PORT}
-CMD [ "node", "." ]
+CMD [ "./wait-for-it.sh" , "[ENTER YOUR ENDPOINT HERE]" , "--strict" , "--timeout=300" , "--" , "node", ".", "npm run migrate" ]

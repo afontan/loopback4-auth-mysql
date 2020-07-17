@@ -16,7 +16,7 @@ export class UserRepository extends DefaultCrudRepository<User,
   public readonly userCredentials: HasOneRepositoryFactory<UserCredentials, typeof User.prototype.id>;
 
   constructor(
-    @inject('datasources.mysql') dataSource: juggler.DataSource,
+    @inject('datasources.postgresql') dataSource: juggler.DataSource,
     @repository.getter('UserCredentialsRepository')
     protected userCredentialsRepositoryGetter: Getter<UserCredentialsRepository>,
   ) {
