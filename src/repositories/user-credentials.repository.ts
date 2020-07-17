@@ -1,6 +1,6 @@
 import {DefaultCrudRepository} from '@loopback/repository';
 import {UserCredentials, UserCredentialsRelations} from '../models';
-import {DbDataSource} from '../datasources';
+import {PostgresqlDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
 export class UserCredentialsRepository extends DefaultCrudRepository<
@@ -9,7 +9,7 @@ export class UserCredentialsRepository extends DefaultCrudRepository<
   UserCredentialsRelations
 > {
   constructor(
-    @inject('datasources.mysql') dataSource: DbDataSource,
+    @inject('datasources.postgresql') dataSource: PostgresqlDataSource,
   ) {
     super(UserCredentials, dataSource);
   }

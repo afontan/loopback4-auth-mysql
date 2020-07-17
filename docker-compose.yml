@@ -10,17 +10,16 @@ services:
     restart: on-failure
 
   db:
-    image: mysql:8.0.21
+    image: postgres
     restart: on-failure
     environment:
-      MYSQL_DATABASE: 'dbusca'
-      MYSQL_USER: 'api_user'
-      MYSQL_PASSWORD: 'api_read'
-      MYSQL_ROOT_PASSWORD: 'api_root_pwd'
+      POSTGRES_DB: 'dbusca'
+      POSTGRES_USER: 'api_user'
+      POSTGRES_PASSWORD: 'root'
     ports:
-      - '3306:3306'
+      - '5432:5432'
     volumes:
-      - dbusca-db:/var/lib/mysql
+      - dbusca-db:/var/lib/database
 
 volumes:
   dbusca-db:
