@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
+  db:
+    image: mysql:8.0.21
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: 'dbusca'
+      MYSQL_USER: 'api_user'
+      MYSQL_PASSWORD: 'api_read'
+      MYSQL_ROOT_PASSWORD: 'api_root_pwd'
+    ports:
+      - '3306:3306'
+    volumes:
+      - dbusca-db:/var/lib/mysql
+
+volumes:
+  dbusca-db:
