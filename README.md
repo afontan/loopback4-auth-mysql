@@ -1,4 +1,4 @@
-# auth-mysql
+# auth-postgresql
 
 To run de project use:
 ```bash
